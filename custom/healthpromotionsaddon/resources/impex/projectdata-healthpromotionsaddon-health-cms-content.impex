@@ -1,0 +1,40 @@
+$contentCatalog=electronicsContentCatalog
+$contentCatalogName=Electronics Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$productCatalog=electronicsProductCatalog
+$productCatalogName=Electronics Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+
+
+# CMS Link Components
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true]; name; url; &linkRef ; &componentRef; target(code)[default='sameWindow'] ;$category ;$product;
+;;HomepageNavLink;Home Page Nav Link;/;HomepageNavLink;HomepageNavLink;;;;
+;;HealthProductsCategoryLink;Health Products Category Link;/HealthProducts/Health-Products/c/HealthProducts;HealthProductsCategoryLink;HealthProductsCategoryLink;
+;;ShoesCategoryLink;Shoes Category Link;/HealthProducts/Shoes/c/shoes;ShoesCategoryLink;ShoesCategoryLink;
+;;HealthEquipmentCategoryLink;Health Equipment Category Link;/HealthProducts/Health-Equipment/c/healthequipment;HealthEquipmentCategoryLink;HealthEquipmentCategoryLink;
+;;HealthSupplementsCategoryLink;Health Supplements Category Link;/HealthProducts/Health-Supplements/c/healthsupplements;HealthSupplementsCategoryLink;HealthSupplementsCategoryLink;
+;;ClothesCategoryLink;Clothes Category Link;/HealthProducts/Clothes/c/clothes;ClothesCategoryLink;ClothesCategoryLink;
+
+# CMS Navigation Nodes
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+;ElectronicsNavNode;;Electronics Site;SiteRootNode;HomepageNavLink;ElectronicsNavNode
+;HealthProductsNavNode;;HealthProducts Category;ElectronicsNavNode;HealthProductsCategoryLink;HealthProductsNavNode
+;HealthProductsLinksTypesNode;;Health Products Types Node;HealthProductsNavNode;ShoesCategoryLink,HealthEquipmentCategoryLink,HealthSupplementsCategoryLink,ClothesCategoryLink;HealthProductsLinksTypesNode
+
+# Navigation Bar Component
+INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];name;wrapAfter;link(uid, $contentCV);styleClass;&componentRef;navigationNode(&nodeRef);dropDownLayout(code)
+;;HealthProductsBarComponent;Health Products Bar Component;10;HealthProductsCategoryLink;;HealthProductsBarComponent;HealthProductsNavNode
+
+
+ # Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)[mode=append]
+;;NavigationBarSlot;HealthProductsBarComponent
+
+
+INSERT_UPDATE NavigationBarCollectionComponent;$contentCV[unique=true];uid[unique=true];name;components(uid, $contentCV);&componentRef
+;;NavBarComponent;Navigation Bar Collection Componeent;BrandsBarComponent,DigitalCamerasBarComponent,FilmCamerasBarComponent,HandheldCamcordersBarComponent,PowerSuppliesBarComponent,FlashMemoryBarComponent,CameraAccessoriesBarComponent,SpecialOffersBarComponent,HealthProductsBarComponent;NavBarComponent
+
+
