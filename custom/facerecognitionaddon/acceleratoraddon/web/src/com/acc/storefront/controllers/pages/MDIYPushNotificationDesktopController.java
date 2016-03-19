@@ -67,9 +67,9 @@ public class MDIYPushNotificationDesktopController extends AbstractAddOnPageCont
 	private static final int BADGE = 1;
 	private static final String ADD_EDIT_ADDRESS_CMS_PAGE = "add-edit-address";
 
-
-	private static String certificate = "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12";
-	private static String passwd = "hybris";
+	private static final String PUSH_NOTIFICATION_SANDBOX_CERTIFICATE ="push.notification.sandbox.certificate";
+/*	private static String certificate = "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12";
+*/	private static String passwd = "hybris";
 	Payload aPayload;
 	@Autowired
 	MDIYTokenBasedCustomerFacade mDIYTokenBasedCustomerFacade;
@@ -160,7 +160,7 @@ public class MDIYPushNotificationDesktopController extends AbstractAddOnPageCont
 					System.out.println("iPhone UDID taken.");
 					System.out.println("Token: " + pushManager.getDevice("iPhone").getToken());
 					System.out.println("Client setup successfull.");
-					final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(certificate, passwd,
+					final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(Config.getParameter(PUSH_NOTIFICATION_SANDBOX_CERTIFICATE), passwd,
 							ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12, HOST, PORT);
 					// Initialize connection
 					//pushManager.initializeConnection(HOST, PORT, certificate, passwd, ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12);

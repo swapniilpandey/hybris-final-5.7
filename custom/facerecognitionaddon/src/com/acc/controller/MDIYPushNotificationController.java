@@ -4,6 +4,7 @@
 package com.acc.controller;
 
 import de.hybris.platform.servicelayer.model.ModelService;
+import de.hybris.platform.util.Config;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -69,9 +70,12 @@ public class MDIYPushNotificationController
 	private static final String HOST = "gateway.sandbox.push.apple.com";
 	private static final int PORT = 2195;
 	private static final int BADGE = 1;
+	private static final String PUSH_NOTIFICATION_SANDBOX_CERTIFICATE = "push.notification.sandbox.certificate";
 
-	private static String certificate = "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12";
-	private static String passwd = "hybris";
+	/*
+	 * private static String certificate =
+	 * "C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12";
+	 */private static String passwd = "hybris";
 	Payload aPayload;
 	String status = null;
 	@Autowired
@@ -195,7 +199,8 @@ public class MDIYPushNotificationController
 
 
 					System.out.println("Client setup successfull.");
-					final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(certificate, passwd,
+					final AppleNotificationServer customServer = new AppleNotificationServerBasicImpl(
+							Config.getParameter(PUSH_NOTIFICATION_SANDBOX_CERTIFICATE), passwd,
 							ConnectionToAppleServer.KEYSTORE_TYPE_PKCS12, HOST, PORT);
 
 					// Initialize connection

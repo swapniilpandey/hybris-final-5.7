@@ -14,19 +14,43 @@
 1. Place the healthpromotionsaddon, qrcodeaddon, servicecore , facerecognitionaddon extensions in custom folder of hybris (location:bin/custom)
 2. Add the following entries in local.properties file (under hybris/config)
 
-    healthdata.heartrate.thresholdvalue=150.000000
-    healthdata.stepcount.thresholdvalue=2285.000000
-    healthdata.bodymass.thresholdvalue=120.000000
-    healthdata.cholesterol.thresholdvalue=14.000000
-    healthdata.fattotal.thresholdvalue=52.000000
-    
-    welcome.beacon.id=8492E75F-4FD6-469D-B132-043FE94921D8
-    welcome.beacon.major.id=6517
-    welcome.beacon.minor.id=23023
+mail.from=mdi@accenture.com
+mail.replyto=mdi@accenture.com
+mail.smtp.server=localhost
+mail.smtp.port=25
 
-        face.recognition.image.threshold=30
-    
-    Modify the values as per requirement
+healthdata.heartrate.thresholdvalue=150.000000
+healthdata.stepcount.thresholdvalue=2285.000000
+healthdata.bodymass.thresholdvalue=120.000000
+healthdata.cholesterol.thresholdvalue=14.000000
+healthdata.fattotal.thresholdvalue=52.000000
+
+push.notification.sandbox.certificate = C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12
+
+welcome.beacon.id=8492E75F-4FD6-469D-B132-043FE94921D8
+welcome.beacon.major.id=6517
+welcome.beacon.minor.id=23023
+
+#welcome.beacon.id=B9407F30-F5F8-466E-AFF9-25556B57FE6D
+#welcome.beacon.major.id=47321
+#welcome.beacon.minor.id=21588
+
+#####User Defined Properties#####
+#Rain
+min.precipitation.light=0.1
+max.precipitation.light=2.5
+min.precipitation.moderate=2.6
+max.precipitation.moderate=7.6
+
+#temperature
+max.required.temperature.for.snowfall=0
+
+#Cloudy #cloud cover
+min.cloud.cover.partly.cloudy=40
+max.cloud.cover.partly.cloudy=60
+min.cloud.cover.mostly.cloudy=60
+max.cloud.cover.mostly.cloudy=100
+Modify the values as per requirement
     
 3. Include the following in localextensions.xml file:
     
