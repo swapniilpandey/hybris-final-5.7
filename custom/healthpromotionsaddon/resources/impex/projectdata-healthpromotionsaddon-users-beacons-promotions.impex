@@ -1,15 +1,21 @@
 # ImpEx for Promotions for Electronics Store
 #% impex.setLocale( Locale.GERMAN ); 
 
+$passwordEncoding=md5
+$defaultPassword=12341234
+$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
+$defaultLanguage=en
+$profilePicture=profilePicture(code, $contentCV)
+$picture=media(code, $contentCV)
+$contentCatalog=electronicsContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$siteResource=jar:com.accenture.constants.QrcodeaddonConstants&/qrcodeaddon/import
+
 $defaultPromoGrp=electronicsPromoGrp
 $productCatalog=electronicsProductCatalog
 $catalogVersion=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$productCatalog]),CatalogVersion.version[default=Staged])[default=$productCatalog:Staged]
 $JoggersGroup=JoggersGroup
 $WorkoutGroup=WorkoutGroup
-
-$passwordEncoding=md5
-$defaultPassword=12341234
-$setPassword=@password[translator=de.hybris.platform.impex.jalo.translators.ConvertPlaintextToEncodedUserPasswordTranslator][default='$passwordEncoding:$defaultPassword']
 
 #To create HeathGroups if not created
 INSERT_UPDATE Usergroup;uid[unique=true];locName;description

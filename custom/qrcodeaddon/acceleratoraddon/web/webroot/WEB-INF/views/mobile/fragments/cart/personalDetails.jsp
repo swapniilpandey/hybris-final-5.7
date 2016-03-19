@@ -76,11 +76,9 @@
               <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                    <tr>
                       <td width="43%" class="graytext">Email</td>
-                      <td width="57%" class="graytext">Phone Number</td>
                     </tr>
                     <tr>
                       <td class="bluetext">${useraddress.email}</td>
-                      <td class="bluetext">${customerModel.phoneNumbers}</td>
                     </tr>
                 </table></td>
             </tr>

@@ -65,10 +65,7 @@
 							<span class="fl lftt">Email:</span>
 							<span class="fl rgtt">${useraddress.email}</span>
 						</div>
-						<div class="oh pdtb20">
-							<span class="fl lftt">Phone Number:</span>
-							<span class="fl rgtt">${customerModel.phoneNumbers} </span>
-						</div>
+						
 					</div>
 					<c:if test="${not empty customerOrderDataList}">
 						<div id="accordion"  style="position: relative; clear:both; display:-moz-groupbox;margin-top: -95px; margin-left: -258px; top: 13%; left: 42%;">
@@ -197,11 +194,9 @@
               <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                    <tr>
                       <td width="43%" class="graytext">Email</td>
-                      <td width="57%" class="graytext">Phone Number</td>
                     </tr>
                     <tr>
                       <td class="bluetext">${useraddress.email}</td>
-                      <td class="bluetext">${customerModel.phoneNumbers}</td>
                     </tr>
                 </table></td>
             </tr>
