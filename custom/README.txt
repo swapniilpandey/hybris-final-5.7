@@ -25,7 +25,7 @@ healthdata.bodymass.thresholdvalue=120.000000
 healthdata.cholesterol.thresholdvalue=14.000000
 healthdata.fattotal.thresholdvalue=52.000000
 
-push.notification.sandbox.certificate = C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12
+push.notification.sandbox.certificate = C:/Users/swapnil.a.pandey/Documents/Sandbox_Certificates.p12/Sandbox_Certificates.p12 (give the actual location of sanbox certificate installed in your machine)
 
 welcome.beacon.id=8492E75F-4FD6-469D-B132-043FE94921D8
 welcome.beacon.major.id=6517
@@ -55,9 +55,12 @@ Modify the values as per requirement
 3. Include the following in localextensions.xml file:
     
     <extension name="qrcodeaddon" />
+	<extension name="qrcode" />
     <extension name="servicecore" />
     <extension name="healthpromotionsaddon" />
     <extension name="facerecognitionaddon" />
+	<extension name="makerbotaddon" />
+
 
 4. Now perform following command to include and build qrcodeaddon in the storefront.
     
@@ -78,9 +81,20 @@ Modify the values as per requirement
 8.After build is successful, perform following command to include and build facerecognitionaddon in the webservices extension.
     
     ant addoninstall -Daddonnames="facerecognitionaddon" -DaddonStorefront.ycommercewebservices="<<webservices name e.g. bncwebservices>>"
+	
+9. After build is successful, perform following command to include and build makerbotaddon in the storefront.
+    
+    ant addoninstall -Daddonnames="makerbotaddon" -DaddonStorefront.yacceleratorstorefront="<<storefront name e.g. bncstorefront>>"
+
+10.After build is successful, perform following command to include and build makerbotaddon in the webservices extension.
+    
+    ant addoninstall -Daddonnames="makerbotaddon" -DaddonStorefront.ycommercewebservices="<<webservices name e.g. bncwebservices>>"
+	
+	
 
 
-9. Add the following entry in storefront’s spring-cms-config.xml
+
+11. Add the following entry in storefront’s spring-cms-config.xml
 
     <entry key="UCOIDOnOrderConfirmationComponent" value-ref="uCOIDOnOrderConfirmationComponentRenderer"/>
     
@@ -96,7 +110,7 @@ Modify the values as per requirement
       </property>
      </bean>
 
-10. Change the scripting-invalid check from true to false in storefront’s web.xml file present inside (web/webroot/web-inf) as below:
+12. Change the scripting-invalid check from true to false in storefront’s web.xml file present inside (web/webroot/web-inf) as below:
 
        <jsp-config>
         <jsp-property-group>
@@ -107,27 +121,26 @@ Modify the values as per requirement
             <trim-directive-whitespaces>true</trim-directive-whitespaces>
         </jsp-property-group>
     </jsp-config>
-
-8.  Run ant clean all. This will build the entire project once again including your module extensions.
-9.    Once the build is successful, start the hybris server using hybrisserver.bat command
-10.    Once the hybris server is started, then system update is required.Update  the hybris Commerce Suite.
+13.  Run ant clean all. This will build the entire project once again including your module extensions.
+14.    Once the build is successful, start the hybris server using hybrisserver.bat command
+15.    Once the hybris server is started, then system update is required.Update  the hybris Commerce Suite.
     The Update page opens with preconfigured settings for update. Perform the following:
     a. Deselect the checkbox stating “Create essential data”
     b. Select the checkboxes next to qrcodeaddon, healthpromotionsaddon, servicecore,facerecognitionaddon
     c. Without changing any more settings, click the Update button. The update process starts and can take several minutes
     
-11.    Once update is completed, click on continue button.
-12.    Go to HMC 
+16.    Once update is completed, click on continue button.
+17.    Go to HMC 
     1)    Access HMC using url: http://localhost:9001/hmc/hybris
     Login: admin
     Password: nimda
     
-13.    Click on Catalog -> Catalog Management Tools on left hand side navigation menu and click on “Synchronization”
-14.    A pop-up window will open. Select electronicsContentCatalog Staged->Target and click on Next
-15.    Click on start for starting the synchronization
-16.    After synchronization has finished, click on Done
-17.    In the HMC expand the Systems Tab and expand the Facet Search folder and Select the Indexer operation wizard
-18.    A new window will open -> select solr configuration as electronicsIndex and click on start
+18.    Click on Catalog -> Catalog Management Tools on left hand side navigation menu and click on “Synchronization”
+19.    A pop-up window will open. Select electronicsContentCatalog Staged->Target and click on Next
+20.    Click on start for starting the synchronization
+21.    After synchronization has finished, click on Done
+22.    In the HMC expand the Systems Tab and expand the Facet Search folder and Select the Indexer operation wizard
+23.    A new window will open -> select solr configuration as electronicsIndex and click on start
 ######################################################################################################
 
 
